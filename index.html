@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StudioWalah — Doorstep Photography</title>
+  <meta name="description" content="Doorstep photography & instant print service. Book a photographer to your door.">
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --accent:#0b74ff;
+      --muted:#6b7280;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#fff);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:28px;}
+    header{
+      display:flex;align-items:center;justify-content:space-between;padding:12px 0;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px}
+    .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#ff9a3c,#ff3d7f);
+      display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px;
+    }
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+    /* hero */
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:42px 0;
+    }
+    .hero h1{margin:0;font-size:32px}
+    .hero p{color:var(--muted);margin-top:12px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 20px rgba(11,18,40,0.06)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .feature{padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(11,116,255,0.03),transparent)}
+    .feature h4{margin:6px 0 0 0}
+    /* simple form */
+    form{display:grid;gap:10px}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    button{background:var(--accent);color:#fff;border:0;padding:10px 12px;border-radius:10px;font-weight:700;cursor:pointer}
+    footer{margin-top:40px;color:var(--muted);font-size:14px;padding:24px 0;border-top:1px solid #eef2f7}
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; padding-bottom:8px}
+      .features{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+      .mobile-toggle{display:inline-block}
+    }
+    @media (max-width:520px){
+      .features{grid-template-columns:1fr}
+      .brand{font-size:16px}
+      .hero h1{font-size:24px}
+    }
+
+    /* mobile menu */
+    .mobile-toggle{display:none;background:transparent;border:0;font-size:18px}
+    .mobile-menu{display:none;gap:12px;flex-direction:column;margin-top:12px}
+    .mobile-menu.show{display:flex}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SW</div>
+        <div>
+          StudioWalah
+          <div style="font-size:12px;color:var(--muted);font-weight:600">Doorstep Photography</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <nav>
+          <a href="#services">Services</a>
+          <a href="#how">How it works</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Menu" id="toggleBtn">☰</button>
+        <a class="cta" href="#contact">Book Now</a>
+      </div>
+    </header>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>We bring the photo studio to your door.</h1>
+          <p>Professional passport photos, family portraits, product shots, or quick in-home shoots — with instant prints and online delivery.</p>
+
+          <div style="display:flex;gap:12px;margin-top:18px">
+            <a class="cta" href="#contact">Book a shoot</a>
+            <a style="text-decoration:none;padding:10px 14px;border-radius:10px;border:1px solid #e6e9ef" href="#how">How it works</a>
+          </div>
+
+          <div class="features">
+            <div class="feature card">
+              <strong>Trusted Photographers</strong>
+              <h4>Background-checked professionals</h4>
+            </div>
+            <div class="feature card">
+              <strong>Instant Prints</strong>
+              <h4>Takeaway prints at your doorstep</h4>
+            </div>
+            <div class="feature card">
+              <strong>Flexible Slots</strong>
+              <h4>Book same-day or next-day</h4>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card" aria-labelledby="quote">
+          <h3 id="quote">Quick booking</h3>
+          <p style="color:var(--muted)">Fill the details below and we'll call to confirm the time.</p>
+
+          <form id="bookingForm" onsubmit="return handleSubmit(event)">
+            <label>
+              Name
+              <input type="text" id="name" required placeholder="Your full name">
+            </label>
+            <label>
+              Phone
+              <input type="tel" id="phone" required placeholder="+91 98765 43210">
+            </label>
+            <label>
+              Service
+              <select id="service" required>
+                <option value="">Choose</option>
+                <option>Passport Photo</option>
+                <option>Family Portrait</option>
+                <option>Product Shoot</option>
+                <option>Modeling Portfolio</option>
+              </select>
+            </label>
+            <label>
+              Notes
+              <textarea id="notes" rows="3" placeholder="Optional details (location, time preference)"></textarea>
+            </label>
+
+            <button type="submit">Request Booking</button>
+          </form>
+
+          <div id="formMsg" style="margin-top:12px;color:green;display:none">Thanks — booking request sent!</div>
+        </aside>
+      </section>
+
+      <section id="how" style="margin-top:18px">
+        <h2>How it works</h2>
+        <ol style="color:var(--muted)">
+          <li>Book a slot — choose service and preferred time.</li>
+          <li>Photographer arrives — professional gear, safe handling.</li>
+          <li>Shoot & prints — digital delivery and instant prints if requested.</li>
+        </ol>
+      </section>
+
+      <section id="services" style="margin-top:18px">
+        <h2>Services</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px">
+          <div class="card">
+            <h4>Passport & ID</h4>
+            <p style="color:var(--muted)">Correct dimensions, approved background.</p>
+          </div>
+          <div class="card">
+            <h4>Portraits</h4>
+            <p style="color:var(--muted)">Family, graduation, newborn.</p>
+          </div>
+          <div class="card">
+            <h4>Products</h4>
+            <p style="color:var(--muted)">High-quality product shots for ecommerce.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:18px">
+        <h2>Contact</h2>
+        <p style="color:var(--muted)">Email: hello@studiowalah.example • Phone: +91 98765 43210</p>
+      </section>
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© <span id="year"></span> StudioWalah. All rights reserved.</div>
+        <div style="color:var(--muted)">Built with ♥ • Simple demo site</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // mobile menu toggle
+    const toggleBtn = document.getElementById('toggleBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    toggleBtn && toggleBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('show');
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // simple booking form handler (demo)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const service = document.getElementById('service').value;
+      if(!name || !phone || !service) {
+        alert('Please complete the form.');
+        return false;
+      }
+      // In a real app: send to API with fetch()
+      document.getElementById('bookingForm').reset();
+      const msg = document.getElementById('formMsg');
+      msg.style.display = 'block';
+      setTimeout(()=> msg.style.display = 'none', 3500);
+      return false;
+    }
+
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
